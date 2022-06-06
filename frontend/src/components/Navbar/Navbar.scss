@@ -1,0 +1,75 @@
+@import '~bootstrap/scss/bootstrap.scss';
+.navbar{
+  padding: 0;
+}
+
+.nav-link, .nav-link:hover, .nav-link.active{
+  text-decoration: none;
+  color: $warning;
+  font-size: 18px;
+}
+.nav-link:hover .menu-icon, .nav-link.active .menu-icon{
+color: $light;
+}
+.navbar-nav .nav-link {
+ padding-right: 10px; 
+  padding-left: 10px;
+}
+nav .dropdown-menu {
+  // background-color: rgba(0,0,0,.5);
+  background-color: #fff;
+  border: 5px solid $yellow-400;
+  opacity: .9;
+  right:0;
+  padding: 0;
+}
+.dropdown-menu[data-bs-popper]{
+  left: -70px;
+}
+nav .dropdown-menu li{
+  margin-top: -1px;
+  padding: 0 10px;
+}
+nav .dropdown-menu li:first-child{
+  border-bottom: 1px solid #ddd;
+}
+
+nav .dropdown-menu .nav-link{
+  color: #333;
+}
+nav .dropdown-menu li:hover{
+  background-color: $yellow-400;
+}
+nav .search #navbarSearchIcon{
+  display: inline-block;
+}
+nav .search .dropdown-menu.show{
+  width: 250px;
+  display: inline-block;
+  background-color: $yellow-400;
+  border: none;
+  opacity: .8;
+  padding: 5px;
+}
+nav .search .dropdown-toggle::after{
+  display: none;
+}
+.navbar-toggler, .navbar-toggler:hover{
+  border: none;
+}
+.navbar-toggler:focus {
+box-shadow: none;
+}
+.navbar-toggler-icon{
+  background: $yellow-400;
+  height: 3px;
+  display: block;
+  margin: 5px 0;
+  border: none;
+}
+@media (min-width: 576px) {
+.navbar-expand-sm .navbar-nav .dropdown-menu {
+    /* position: static; */
+    left: -80px;
+}
+}
