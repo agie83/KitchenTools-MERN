@@ -1,4 +1,6 @@
 import { BsCart3, BsInfoLg } from 'react-icons/bs';
+import Login from '../components/account/Login';
+import Register from '../components/account/Register';
 import IncentiveMarketing from '../components/IncentiveMarketing/IncentiveMarketing';
 import Test from '../components/Test';
 import LayoutPage from '../pages/LayoutPage';
@@ -97,12 +99,12 @@ const menu = [
         _id: '62895ab91d916f2cc7b2a717',
         title: 'Belépés',
         routePath: '/login',
-        routeElement: 'LoginPage',
+        routeElement: LayoutPage,
         navLink: '/login',
         icon: '',
         submenu: [],
         contentComponents: {
-          mainContent: ['LoginForm'],
+          mainContent: [Login],
           asideContent: [],
         },
         protected: false,
@@ -112,13 +114,13 @@ const menu = [
       {
         _id: '62895ab91d916f2cc7b2a718',
         title: 'Regisztráció',
-        routePath: '/registration',
-        routeElement: 'RegistrationPage',
-        navLink: '/registration',
+        routePath: '/register',
+        routeElement: LayoutPage,
+        navLink: '/register',
         icon: '',
         submenu: [],
         contentComponents: {
-          mainContent: ['Registration'],
+          mainContent: [Register],
           asideContent: [],
         },
         protected: false,

@@ -12,7 +12,6 @@ export const loginSchema = Joi.object({
         }),
   password:
       Joi.string()
-        .min(8)
         .required()
         .messages({
           'string.empty': 'Jelszó megadása kötelező',
@@ -23,15 +22,16 @@ export const loginSchema = Joi.object({
 export const registerSchema = Joi.object({
   firstName:
   Joi.string()
-    .required()
+    .required().min(2).max(30)
     .messages({
-      'string.min': 'Keresztnév: Minumum 2 betű',
+      'string.min': 'Vezetéknév: Minumum 2 karakter',
+      'string.max': 'Vezetéknév: Maximum 30 karakter',
       'string.empty': 'Keresztnév megadása kötelező',
       'any.required': 'Keresztnév megadása kötelező',
     }),
   lastName:
     Joi.string()
-      .required().min(2).max(5)
+      .required().min(2).max(20)
       .messages({
         'string.min': 'Vezetéknév: Minumum 2 karakter',
         'string.max': 'Vezetéknév: Maximum 20 karakter',
@@ -57,7 +57,7 @@ export const registerSchema = Joi.object({
           'any.required': 'Jelszó megadása kötelező',
 
         }),
-  passwordConfirmation:
+  passwordAgain:
       Joi.string()
         .min(8)
         .required()

@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsAt, BsLock } from 'react-icons/bs';
 import { loginSchema } from '../../utils/validators';
 import Input from '../formElements/Input';
 import Alert from '../formElements/Alert';
 import './account.scss';
 import BoxLayout from './BoxLayout';
+import { AuthContext, loginUser } from '../../contexts/AuthContext';
 
 function Login() {
-  const loginFailed = null;
-  const errorMessage = null;
+  const navigate = useNavigate();
   const basicFormData = {
     email: '',
     password: '',
   };
   const [formData, setFormData] = useState(basicFormData);
   const [formError, setFormError] = useState('');
+  const {
+    errorMessage, loading, dispatch, user,
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      setFormData(basicFormData);
+      navigate('/');
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (errorMessage) setFormError(errorMessage.message.split(','));
+  }, [errorMessage]);
 
   function handleValidation() {
     const result = loginSchema.validate(formData, { abortEarly: false });
@@ -38,13 +52,12 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      const formElement = e.target;
+      await loginUser(dispatch, formData);
     }
   };
   return (
     <BoxLayout title="Belépés">
-      {(formError !== '' || loginFailed) ? <Alert type="danger" message={(loginFailed) ? errorMessage.message : formError} /> : ''}
-
+      {(formError !== '') && <Alert type="danger" message={formError} />}
       <div>
         <form onSubmit={handleSubmit} noValidate>
           <Input
@@ -66,7 +79,7 @@ function Login() {
             value={formData.password}
             icon={<BsLock className="fs-4 me-1" />}
           />
-          <button type="submit" className="btn btn-warning">Belépés</button>
+          <button type="submit" disabled={loading} className="btn btn-warning">Belépés</button>
           <div className="mt-3">
             <Link to="/register" className="site-link">Még nincs fiókod? Kattints ide a regisztrációhoz!</Link>
           </div>

@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext, logout } from '../../contexts/AuthContext';
 import './Navbar.scss';
 
 function Navbar({ menuList }) {
-  const user = null;
+  const { user, dispatch } = useContext(AuthContext);
   const filter = (user) ? 'loggedIn' : 'notLoggedIn';
 
   return (
@@ -36,7 +38,7 @@ function Navbar({ menuList }) {
                             (submenu.visible === filter || submenu.visible === 'always')
                               ? (
                                 <li key={submenu._id}>
-                                  <NavLink to={submenu.navLink} className="nav-link">
+                                  <NavLink to={submenu.navLink} className="nav-link" onClick={() => ((submenu.title === 'Kilépés') ? logout(dispatch) : logout(dispatch))}>
                                     {submenu.title}
                                   </NavLink>
                                 </li>

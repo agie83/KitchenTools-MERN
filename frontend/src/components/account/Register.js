@@ -1,29 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BsAt, BsPerson, BsLock, BsShieldLock,
 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerSchema } from '../../utils/validators';
 import Input from '../formElements/Input';
 import Alert from '../formElements/Alert';
 import BoxLayout from './BoxLayout';
+import { REGISTER_URL } from '../../constants/url';
 
 function Register() {
-  const registerFailed = null;
-  const errorMessage = null;
   const basicFormData = {
     email: '',
     password: '',
   };
   const [formData, setFormData] = useState(basicFormData);
-  const [formError, setFormError] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (success) {
+        setAlertMessage('');
+        navigate('/login');
+      }
+    }, 3000);
+  }, [success]);
   function handleValidation() {
     const result = registerSchema.validate(formData, { abortEarly: false });
     const { error } = result;
     if (error) {
       const errorArray = result.error.message.split('.');
-      setFormError(errorArray);
+      setAlertMessage(
+        {
+          type: 'danger',
+          message: errorArray,
+        },
+      );
       return false;
     }
     return true;
@@ -40,12 +54,59 @@ function Register() {
     e.preventDefault();
     if (handleValidation()) {
       const formElement = e.target;
+      let response;
+      try {
+        response = await fetch(REGISTER_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        const { message = 'Server error' } = await response.json();
+
+        if (response.status >= 200 && response.status < 300) {
+          setFormData(basicFormData);
+          setAlertMessage(
+            {
+              type: 'success',
+              message: 'Sikeres regisztráció, most átirányítunk a belépési oldalra.',
+            },
+          );
+          setSuccess(true);
+          formElement.reset();
+        }
+        if (response.status === 400) {
+          setAlertMessage(
+            {
+              type: 'danger',
+              message: message.split(','),
+            },
+          );
+        }
+        if (response.status === 500) {
+          setAlertMessage(
+            {
+              type: 'danger',
+              message: 'Hiba történt, kérjük, próbáld újra később!',
+            },
+          );
+        }
+      } catch (error) {
+        setAlertMessage(
+          {
+            type: 'danger',
+            message: 'Hiba történt, kérjük, próbáld újra később!',
+          },
+        );
+        throw new Error(error);
+      }
     }
   };
   return (
     <BoxLayout title="Regisztráció">
-      {(formError !== '' || registerFailed) ? <Alert type="danger" message={(registerFailed) ? errorMessage.message : formError} /> : ''}
 
+      {(alertMessage !== '') && <Alert type={alertMessage.type} message={alertMessage.message} />}
       <div>
         <form onSubmit={handleSubmit} noValidate>
           <Input
@@ -86,11 +147,11 @@ function Register() {
           />
           <Input
             type="password"
-            name="passwordConfirmation"
-            id="passwordConfirmation"
+            name="passwordAgain"
+            id="passwordAgain"
             placeholder="Jelszó megadása újból*"
             onChange={handleOnChange}
-            value={formData.passwordConfirmation}
+            value={formData.passwordAgain}
             icon={<BsShieldLock className="fs-4 me-1" />}
           />
           <button type="submit" className="btn btn-warning">Regisztrálok</button>

@@ -1,6 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import AuthProvider from './contexts/AuthContext';
 import LayoutPage from './pages/LayoutPage';
 import { menu } from './utils/menus';
 import 'bootstrap/dist/js/bootstrap';
@@ -28,8 +29,9 @@ function App() {
   });
   return (
     <BrowserRouter>
-      <Routes>
-        {
+      <AuthProvider>
+        <Routes>
+          {
           routeList.map((route) => (
             <Route
               key={uuid()}
@@ -38,7 +40,8 @@ function App() {
             />
           ))
         }
-      </Routes>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -8,10 +8,12 @@
 html,body{
   background: url('./assets/kitchen.jpg') no-repeat center center fixed;
   background-size: cover;
+ 
 }
 #root{
 padding-top:70px;
 display:flex; flex-direction:column; min-height:100vh;
+color: #333;
 }
 div{
   background: transparent;

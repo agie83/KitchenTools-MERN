@@ -30,7 +30,7 @@ nav .dropdown-menu li{
   margin-top: -1px;
   padding: 0 10px;
 }
-nav .dropdown-menu li:first-child{
+nav .dropdown-menu li:not(:last-child){
   border-bottom: 1px solid #ddd;
 }
 

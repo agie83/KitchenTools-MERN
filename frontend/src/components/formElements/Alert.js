@@ -9,7 +9,7 @@ export default function Alert({ type, message }) {
            (typeof (message) !== 'string' && message.length > 0)
              ? message.map((err) => (
                <div key={uuid()}>{err}</div>
-             )) : { message }
+             )) : message
       }
     </div>
   );
