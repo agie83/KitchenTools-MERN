@@ -1,31 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { v4 as uuid } from 'uuid';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import ShopNavbar from '../components/ShopNavbar/ShopNavbar';
 import './layout.scss';
-import { AuthContext } from '../contexts/AuthContext';
-import { CartContext } from '../contexts/CartContext/CartContext';
-import getItems from '../utils/queries';
-import { CART_URL } from '../constants/url';
 
 const Layout = ({ children, navData }) => {
-  const { token } = useContext(AuthContext);
-  const [cartItems, setCartItems] = useContext(CartContext);
-  const [cartList, setCartList] = useState([]);
-
-  // useEffect(() => {
-  //   getItems(CART_URL, {
-  //     method: 'GET',
-  //     headers: {
-  //       authorization: `Bearer ${token}`,
-  //     },
-  //   }).then((data) => {
-  //     setCartList(data.cartItems);
-  //     setCartItems(data.cartItems);
-  //   });
-  // }, []);
-
   const path = `/${window.location.pathname.split('/')[1]}` || '/';
   const routeList = [];
 
