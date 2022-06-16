@@ -1,8 +1,10 @@
+import { BsCart3 } from 'react-icons/bs';
 import Login from '../components/account/Login';
 import Register from '../components/account/Register';
 import IncentiveMarketing from '../components/IncentiveMarketing/IncentiveMarketing';
 import LayoutPage from '../pages/LayoutPage';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
+import Cart from '../components/Shop/Cart/Cart';
 
 const menu = [
   {
@@ -134,6 +136,22 @@ const menu = [
     protected: false,
     visible: 'always',
     type: 'primary',
+  },
+  {
+    _id: '62895ab91d916f2cc7b2a719',
+    title: 'Kosár',
+    routePath: '/cart',
+    routeElement: LayoutPage,
+    navLink: '/cart',
+    icon: BsCart3,
+    submenu: [],
+    contentComponents: {
+      mainContent: [Cart],
+      asideContent: [],
+    },
+    protected: true,
+    visible: 'always',
+    type: 'secondary',
   },
   {
     _id: '62895ab91d916f2cc7b2a721',
