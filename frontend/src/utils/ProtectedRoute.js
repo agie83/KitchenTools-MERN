@@ -3,7 +3,6 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
 function ProtectedRoute({ children }) {
-  // const auth = null;
   const { user } = useContext(AuthContext);
   return user ? children : <Navigate to="/login" />;
 }
