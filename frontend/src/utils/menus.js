@@ -6,6 +6,7 @@ import LayoutPage from '../pages/LayoutPage';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 import Cart from '../components/Shop/Cart/Cart';
 import Informations from '../components/Informations/Informations';
+import Shop from '../components/Shop/Shop';
 
 const menu = [
   {
@@ -34,7 +35,7 @@ const menu = [
     icon: '',
     submenu: [],
     contentComponents: {
-      mainContent: ['Shop'],
+      mainContent: [Shop],
       asideContent: [],
     },
     protected: false,
