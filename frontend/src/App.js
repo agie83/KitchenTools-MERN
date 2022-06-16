@@ -50,7 +50,7 @@ function App() {
                    key={route._id}
                    path={route.routePath}
                    element={(
-                     <ProtectedRoute>
+                     <ProtectedRoute currentMenu={route.navLink}>
                        <LayoutPage navData={menu} />
                      </ProtectedRoute>
                   )}
