@@ -1,9 +1,8 @@
-import { BsCart3, BsInfoLg } from 'react-icons/bs';
 import Login from '../components/account/Login';
 import Register from '../components/account/Register';
 import IncentiveMarketing from '../components/IncentiveMarketing/IncentiveMarketing';
-import Test from '../components/Test';
 import LayoutPage from '../pages/LayoutPage';
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 
 const menu = [
   {
@@ -15,7 +14,7 @@ const menu = [
     icon: '',
     submenu: [],
     contentComponents: {
-      mainContent: [IncentiveMarketing, Test],
+      mainContent: [IncentiveMarketing],
       asideContent: [],
     },
     protected: false,
@@ -27,12 +26,12 @@ const menu = [
     title: 'Webshop',
     routePath: '/shop',
     routePathChildren: ['/shop/:slug', '/shop/:slug/:productSlug'],
-    routeElement: 'Shop',
+    routeElement: LayoutPage,
     navLink: '/shop',
     icon: '',
     submenu: [],
     contentComponents: {
-      mainContent: [Test],
+      mainContent: ['Shop'],
       asideContent: [],
     },
     protected: false,
@@ -51,13 +50,13 @@ const menu = [
         _id: '62895ab91d916f2cc7b2a714',
         title: 'Adatok',
         routePath: '/profile',
-        routeElement: 'ProfilePage',
+        routeElement: LayoutPage,
         navLink: '/profile',
         icon: '',
         submenu: [],
         contentComponents: {
-          mainContent: ['Profile', 'Cart'],
-          asideContent: ['MyOrders'],
+          mainContent: ['Profile'],
+          asideContent: [],
         },
         protected: true,
         visible: 'loggedIn',
@@ -67,7 +66,7 @@ const menu = [
         _id: '62895ab91d916f2cc7b2a715',
         title: 'Rendeléseim',
         routePath: '/myOrders',
-        routeElement: 'MyOrdersPage',
+        routeElement: LayoutPage,
         navLink: '/myorders',
         icon: '',
         submenu: [],
@@ -137,36 +136,20 @@ const menu = [
     type: 'primary',
   },
   {
-    _id: '62895ab91d916f2cc7b2a719',
-    title: 'Kosár',
-    routePath: '/cart',
+    _id: '62895ab91d916f2cc7b2a721',
+    title: '404',
+    routePath: '*',
     routeElement: LayoutPage,
-    navLink: '/cart',
-    icon: BsCart3,
+    navLink: '',
+    icon: '',
     submenu: [],
     contentComponents: {
-      mainContent: [Test],
+      mainContent: [NotFoundPage],
       asideContent: [],
     },
     protected: false,
-    visible: 'always',
-    type: 'secondary',
-  },
-  {
-    _id: '62895ab91d916f2cc7b2a720',
-    title: 'Fizetési-és átvételi lehetőségek',
-    routePath: '/info',
-    routeElement: LayoutPage,
-    navLink: '/info',
-    icon: BsInfoLg,
-    submenu: [],
-    contentComponents: {
-      mainContent: [Test],
-      asideContent: [],
-    },
-    protected: false,
-    visible: 'always',
-    type: 'secondary',
+    visible: 'never',
+    type: 'other',
   },
 ];
 const adminMenu = [];
