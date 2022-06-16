@@ -1,10 +1,11 @@
-import { BsCart3 } from 'react-icons/bs';
+import { BsCart3, BsInfoLg } from 'react-icons/bs';
 import Login from '../components/account/Login';
 import Register from '../components/account/Register';
 import IncentiveMarketing from '../components/IncentiveMarketing/IncentiveMarketing';
 import LayoutPage from '../pages/LayoutPage';
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 import Cart from '../components/Shop/Cart/Cart';
+import Informations from '../components/Informations/Informations';
 
 const menu = [
   {
@@ -150,6 +151,22 @@ const menu = [
       asideContent: [],
     },
     protected: true,
+    visible: 'always',
+    type: 'secondary',
+  },
+  {
+    _id: '62895ab91d916f2cc7b2a720',
+    title: 'Fizetési-és átvételi lehetőségek',
+    routePath: '/info',
+    routeElement: LayoutPage,
+    navLink: '/info',
+    icon: BsInfoLg,
+    submenu: [],
+    contentComponents: {
+      mainContent: [Informations],
+      asideContent: [],
+    },
+    protected: false,
     visible: 'always',
     type: 'secondary',
   },
