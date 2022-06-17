@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const OrderSchema = new Schema({
   status: {
     type: String,
-    enum: ['pending', 'not active', 'active', 'purchased', 'deleted'],
+    enum: ['pending', 'ordered', 'paid', 'finished'],
     required: true,
   },
   name: {
@@ -36,8 +36,11 @@ const OrderSchema = new Schema({
     ref: 'product',
     required: true,
   },
-}, {
-  timestamps: { createdAt: 'orderDate', updatedAt: false },
+  orderDate: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 export default mongoose.model('order', OrderSchema);

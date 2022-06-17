@@ -5,6 +5,7 @@ import register from '../register/register-routes';
 import login from '../login/login-routes';
 import shop from '../shop/shop-routes';
 import cart from '../cart/cart-routes';
+import orders from '../orders/order-routes';
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use(login);
 router.use(shop);
 router.use(authorizationMiddleware);
 router.use(cart);
+router.use(orders);
 
 export default router;
