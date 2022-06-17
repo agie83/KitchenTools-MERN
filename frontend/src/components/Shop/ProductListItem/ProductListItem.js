@@ -70,7 +70,7 @@ function ProductListItem({
             </div>
             <div className="flex-fill">
               { (user) && <button type="button" className="product-link button-pure" onClick={() => handleAddToCart(productId)}>Kosárba</button>}
-              { (!user) && <Link to="/login" className="product-link button-pure">Kosárba</Link>}
+              { (!user) && <Link to={`/login?to=${productPath}`} className="product-link button-pure">Kosárba</Link>}
             </div>
           </div>
         </div>
