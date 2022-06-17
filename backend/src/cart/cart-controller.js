@@ -28,25 +28,6 @@ class CartController {
     }
   }
 
-  // static async deleteAll(req, res, next) {
-  //   try {
-  //     const response = await CartService.deleteFullCart(req.params);
-  //     res.status(200).json(response);
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // }
-
-  // static async deleteOne(req, res, next) {
-  //   try {
-  //     const isDeleted = await CartService.deleteOrder(req.params.orderId, req.user.id);
-  //     const message = isDeleted ? 'Deleted successfully' : 'Already deleted';
-  //     res.status(200).send({ message });
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // }
-
   static async deleteMany(req, res, next) {
     try {
       const amountDeleted = await CartService.deleteFullCart(req.user.id);
