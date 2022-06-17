@@ -8,6 +8,7 @@ import Cart from '../components/Shop/Cart/Cart';
 import Informations from '../components/Informations/Informations';
 import Shop from '../components/Shop/Shop';
 import MyOrders from '../components/account/MyOrders';
+import Profile from '../components/account/Profile/Profile';
 
 const menu = [
   {
@@ -60,7 +61,7 @@ const menu = [
         icon: '',
         submenu: [],
         contentComponents: {
-          mainContent: ['Profile'],
+          mainContent: [Profile],
           asideContent: [],
         },
         protected: true,
