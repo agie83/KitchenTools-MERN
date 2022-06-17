@@ -10,7 +10,7 @@ function Navbar({ menuList }) {
   return (
     <nav className="navbar fixed-top navbar-expand-md">
       <div className="container-fluid">
-        <NavLink to="/" className="nav-link text-warning fs-3 d-flex align-self-center">
+        <NavLink to="/" className="brand nav-link text-warning fs-3 d-flex align-self-center">
           Kitchen
           <span className="text-light">Tools</span>
           <span className="text-warning fs-3">.</span>
@@ -36,13 +36,13 @@ function Navbar({ menuList }) {
                         menu.submenu.map((submenu) => (
                           (
                             (submenu.visible === filter || submenu.visible === 'always')
-                              ? (
-                                <li key={submenu._id}>
-                                  <NavLink to={submenu.navLink} className="nav-link" onClick={() => ((submenu.title === 'Kilépés') ? logout(dispatch) : logout(dispatch))}>
-                                    {submenu.title}
-                                  </NavLink>
-                                </li>
-                              ) : ''
+                            && (
+                            <li key={submenu._id}>
+                              <NavLink to={submenu.navLink} className="nav-link" onClick={() => ((submenu.title === 'Kilépés') && logout(dispatch))}>
+                                {submenu.title}
+                              </NavLink>
+                            </li>
+                            )
                           )
                         ))
                       }
