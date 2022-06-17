@@ -21,8 +21,10 @@ const CartProvider = ({ children }) => {
       }).then((data) => {
         setCartItems(data.cartItems);
       });
+    } else {
+      setCartItems([]);
     }
-  }, []);
+  }, [token]);
 
   return (
     <CartContext.Provider value={[cartItems, setCartItems]}>
