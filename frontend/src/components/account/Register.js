@@ -6,13 +6,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { registerSchema } from '../../utils/validators';
 import Input from '../formElements/Input';
 import Alert from '../formElements/Alert';
-import BoxLayout from './BoxLayout';
+import BoxLayout from '../BoxLayout';
 import { REGISTER_URL } from '../../constants/url';
 
 function Register() {
   const basicFormData = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    passwordAgain: '',
   };
   const [formData, setFormData] = useState(basicFormData);
   const [alertMessage, setAlertMessage] = useState('');
