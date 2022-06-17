@@ -5,11 +5,10 @@ import { loginSchema } from '../../utils/validators';
 import Input from '../formElements/Input';
 import Alert from '../formElements/Alert';
 import './account.scss';
-import BoxLayout from './BoxLayout';
+import BoxLayout from '../BoxLayout';
 import { AuthContext, loginUser } from '../../contexts/AuthContext';
 
 function Login() {
-  const navigate = useNavigate();
   const basicFormData = {
     email: '',
     password: '',
@@ -20,10 +19,15 @@ function Login() {
     errorMessage, loading, dispatch, user,
   } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const navigatePath = (urlSearchParams.get('to')) ? urlSearchParams.get('to') : '/shop';
+
   useEffect(() => {
     if (user) {
+      setFormError('');
       setFormData(basicFormData);
-      navigate('/');
+      navigate(navigatePath);
     }
   }, [user]);
 
