@@ -4,6 +4,7 @@ export const REGISTER_URL = `${BACKEND_URL}/api/register`;
 export const SHOP_URL = `${BACKEND_URL}/api/shop/`;
 export const CART_URL = `${BACKEND_URL}/api/cart/`;
 export const ORDERS_URL = `${BACKEND_URL}/api/orders/`;
+export const PROFILE_URL = `${BACKEND_URL}/api/users`;
 export const CLOUDINARY_PRODUCT_URL = 'https://res.cloudinary.com/dgyi1gjus/image/upload/c_scale,h_750/v1655058122/kitchentools/products';
 export const CLOUDINARY_CART_THUMBNAIL_URL = 'https://res.cloudinary.com/dgyi1gjus/image/upload/c_scale,h_50/v1655058122/kitchentools/products';
 export const CLOUDINARY_CATEGORY_URL = 'https://res.cloudinary.com/dgyi1gjus/image/upload/c_scale,h_750/v1655056821/kitchentools/categories';
