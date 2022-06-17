@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { CLOUDINARY_PRODUCT_URL } from '../../../constants/url';
+import React, { useContext, useState } from 'react';
+import { CART_URL, CLOUDINARY_PRODUCT_URL } from '../../../constants/url';
+import { AuthContext } from '../../../contexts/AuthContext';
+import { CartContext } from '../../../contexts/CartContext/CartContext';
+import getItems from '../../../utils/queries';
 import Alert from '../../formElements/Alert';
+import Input from '../../formElements/Input';
 import dataSheetSchema from './ProductDataSheet-validator';
 import './ProductDataSheet.scss';
 
 function ProductDataSheet({ product }) {
   const [qty, setQty] = useState(1);
   const [alertMessage, setAlertMessage] = useState('');
+  const [cartItems, setCartItems] = useContext(CartContext);
+  const { token, user } = useContext(AuthContext);
 
   const handleOnChange = (e) => {
     setQty(e.target.value);
   };
 
   const handleValidation = () => {
-    const result = dataSheetSchema.validate(qty, { abortEarly: false });
+    const result = dataSheetSchema.validate({ qty }, { abortEarly: false });
     const { error } = result;
     if (error) {
       const errorArray = result.error.message.split('.');
@@ -28,10 +34,39 @@ function ProductDataSheet({ product }) {
     return true;
   };
 
-  const handleOnSubmit = (e) => {
+  const handleAddToCart = async (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      console.log(e.target.value);
+      const existingProduct = cartItems.find((cartItem) => cartItem.productId === product._id);
+      const newQty = (!existingProduct) ? Number(qty) : Number(existingProduct.qty) + Number(qty);
+      if (!user) return;
+      if (existingProduct) {
+        getItems(CART_URL + user.id, {
+          method: 'PATCH',
+          headers: {
+            authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderId: existingProduct._id, qty: newQty }),
+        });
+
+        setCartItems((prev) => (
+          prev.map((prevItem) => (
+            (prevItem._id === existingProduct._id) ? { ...prevItem, qty: newQty } : prevItem
+          ))
+        ));
+      } else {
+        getItems(CART_URL + user.id, {
+          method: 'POST',
+          headers: {
+            authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId: product._id, qty: Number(qty) }),
+        }).then((newCartItem) => {
+          setCartItems((prev) => [...prev, newCartItem]);
+        });
+      }
     }
   };
   return (
@@ -50,17 +85,20 @@ function ProductDataSheet({ product }) {
           {
             (product.qty > 0)
               ? (
-                <form className="row g-3 my-5">
-                  <div className="mb-3 row">
-                    <div className="col-6 col-sm-auto mt-3 text-center">Mennyiség</div>
-                    <div className="col-6 col-sm-5 col-lg-3">
-                      <input type="number" className="form-control mt-3" id="qty" name="qty" min="0" value={qty} onChange={handleOnChange} />
-                    </div>
-                    <div className="col-12 col-sm-auto">
-                      <button type="submit" className="btn btn-warning mt-3 w-100" onSubmit={() => handleOnSubmit}>Kosárba</button>
-                    </div>
-                  </div>
+                <form onSubmit={handleAddToCart} noValidate>
                   {(alertMessage !== '') && <Alert type={alertMessage.type} message={alertMessage.message} />}
+                  <Input
+                    type="number"
+                    name="qty"
+                    id="qty"
+                    placeholder="Mennyiség"
+                    onChange={handleOnChange}
+                    value={qty}
+                  />
+
+                  <div className="text-end">
+                    <button type="submit" className="btn btn-warning">Kosárba</button>
+                  </div>
                 </form>
               )
               : (

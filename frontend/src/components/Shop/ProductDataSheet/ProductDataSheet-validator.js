@@ -2,11 +2,14 @@ import Joi from 'joi';
 
 const dataSheetSchema = Joi.object({
   qty:
-      Joi.string()
+      Joi.number()
+        .greater(0)
         .required()
         .messages({
-          'string.empty': 'Email cím megadása kötelező',
-          'any.required': 'Email cím megadása kötelező',
+          'number.base': 'Adj meg egy számot!',
+          'number.greater': 'Adj meg nullánál nagyobb mennyiséget!',
+          'number.empty': 'Mennyiség megadása kötelező!',
+          'any.required': 'Mennyiség megadása kötelező!',
         }),
 });
 
