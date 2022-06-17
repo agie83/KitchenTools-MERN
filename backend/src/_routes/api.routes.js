@@ -6,6 +6,7 @@ import login from '../login/login-routes';
 import shop from '../shop/shop-routes';
 import cart from '../cart/cart-routes';
 import orders from '../orders/order-routes';
+import user from '../user/user-routes';
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use(shop);
 router.use(authorizationMiddleware);
 router.use(cart);
 router.use(orders);
+router.use(user);
 
 export default router;
