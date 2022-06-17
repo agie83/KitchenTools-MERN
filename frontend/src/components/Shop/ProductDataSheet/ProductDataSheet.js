@@ -85,7 +85,7 @@ function ProductDataSheet({ product }) {
           {
             (product.qty > 0)
               ? (
-                <form onSubmit={handleAddToCart} noValidate>
+                <form onSubmit={handleAddToCart} noValidate className="d-flex">
                   {(alertMessage !== '') && <Alert type={alertMessage.type} message={alertMessage.message} />}
                   <Input
                     type="number"
@@ -96,7 +96,7 @@ function ProductDataSheet({ product }) {
                     value={qty}
                   />
 
-                  <div className="text-end">
+                  <div className="ms-3 text-end">
                     <button type="submit" className="btn btn-warning">Kosárba</button>
                   </div>
                 </form>
