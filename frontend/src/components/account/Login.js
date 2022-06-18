@@ -32,6 +32,7 @@ function Login() {
   }, [user]);
 
   useEffect(() => {
+    setFormError('');
     if (errorMessage) setFormError(errorMessage.message.split(','));
   }, [errorMessage]);
 
