@@ -10,7 +10,7 @@ const config = {
 
 export const swaggerOptions = {
   definition: {
-    openapi: '1.0.0',
+    openapi: '3.0.3',
     info: {
       title: 'KitchenTools API',
       version: packageJson.version,
