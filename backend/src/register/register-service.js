@@ -2,26 +2,19 @@ import mongoose from 'mongoose';
 import User from '../user/user-model';
 import logger from '../logger';
 import HttpError from '../_utils/HttpError';
-import registerSchema from './registerValidator';
+import { registerValidator, handleValidation } from '../_utils/validatorTools';
 
 export default class RegisterService {
-  static handleValidation(data) {
-    const result = registerSchema.validate(data, { abortEarly: false });
-    const { error } = result;
-    if (error) {
-      const errorArray = result.error.message.split('.');
-      return errorArray;
-    }
-    return true;
-  }
-
   static async addUser(userData) {
     const { email } = userData;
     const foundUser = await User.findOne({ email });
     if (foundUser) throw new HttpError('A megadott email cím már szerepel a rendszerünkben.', 400);
 
-    const validation = this.handleValidation(userData);
-    if (validation !== true) throw new HttpError(validation, 400);
+    const validation = handleValidation(userData, registerValidator);
+    if (validation !== true) {
+      validation.filter((msg) => msg !== '');
+      throw new HttpError(validation, 400);
+    }
 
     try {
       const docUser = new User(userData);
@@ -43,12 +36,13 @@ export default class RegisterService {
       if (requiredFieldNames.length === 1) {
         logger.error(errors[requiredFieldNames[0]]);
         const fieldName = requiredFieldNames[0];
-        throw httpError.setMessage(`${fieldNameHU[fieldName]} megadása kötelező.`);
+        throw httpError.setMessage(`${fieldNameHU[fieldName]} megadása kötelező!`);
       }
       if (requiredFieldNames.length > 1) {
         const requiredFieldNamesHU = requiredFieldNames.map((field) => fieldNameHU[field]);
         const [lastFieldName, ...otherFieldNames] = requiredFieldNamesHU;
-        throw httpError.setMessage(`${otherFieldNames.join(', ')} és ${lastFieldName} megadása kötelező.`);
+        logger.error(errors);
+        throw httpError.setMessage(`${otherFieldNames.join(', ')} és ${lastFieldName} megadása kötelező!`);
       }
       const wrongField = Object.values(errors)[0];
       throw httpError.setMessage(wrongField.message);
