@@ -1,20 +1,10 @@
 import jwt from 'jsonwebtoken';
 import UserSchema from '../user/user-model';
 import config from '../config';
-import loginSchema from './loginValidator';
 import HttpError from '../_utils/HttpError';
+import { loginValidator, handleValidation } from '../_utils/validatorTools';
 
 export default class LoginService {
-  static handleValidation(data) {
-    const result = loginSchema.validate(data, { abortEarly: false });
-    const { error } = result;
-    if (error) {
-      const errorArray = result.error.message.split('.');
-      return errorArray;
-    }
-    return true;
-  }
-
   static async getUserByEmail(email) {
     return UserSchema.findOne({ email });
   }
@@ -32,7 +22,11 @@ export default class LoginService {
   static async getJwtToken(request) {
     const { email, password } = request;
 
-    const validation = this.handleValidation({ email, password });
+    const validation = handleValidation(request, loginValidator);
+    if (validation !== true) {
+      validation.filter((msg) => msg !== '');
+      throw new HttpError(validation, 400);
+    }
     if (validation !== true) throw new HttpError(validation, 401);
 
     let user;

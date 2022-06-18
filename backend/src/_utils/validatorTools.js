@@ -1,5 +1,26 @@
 import validator from 'validator';
 
+const loginValidator = {
+
+  email: [
+    {
+      validityFn: (string) => !validator.isEmpty(string),
+      errorMessage: 'Email cím megadása kötelező!',
+    },
+    {
+      validityFn: (string) => validator.isEmail(string),
+      errorMessage: 'Nem megfelelő email cím formátum',
+    },
+  ],
+  password: [
+    {
+      validityFn: (string) => !validator.isEmpty(string),
+      errorMessage: 'Jelszó megadása kötelező!',
+    },
+  ],
+
+};
+
 const registerValidator = {
   lastName: [
     {
@@ -75,9 +96,11 @@ function handleValidation(formData, validatorSchema) {
 
   const errors = validationResult.filter((msg) => msg.length > 0);
 
-  if (formData.includes('passwordAgain') && !comparePassword(formData.password, formData.passwordAgain)) {
+  if (('passwordAgain' in formData) && !comparePassword(formData.password, formData.passwordAgain)) {
     return [...errors, 'A két jelszó eltér!'];
   }
   return (errors.length > 0) ? errors : true;
 }
-export { registerValidator, comparePassword, handleValidation };
+export {
+  loginValidator, registerValidator, comparePassword, handleValidation,
+};
