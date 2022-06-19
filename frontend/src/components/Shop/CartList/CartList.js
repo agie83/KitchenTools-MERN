@@ -62,7 +62,7 @@ function CartList() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    }).then((data) => console.log(data));
+    });
   };
 
   const handleCounterClick = (item, amount) => {
