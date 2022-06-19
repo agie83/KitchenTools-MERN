@@ -18,7 +18,7 @@ class OrderService {
   }
 
   static async setStatusToOrdered(userId) {
-    if (!ObjectId.isValid(userId)) throw new HttpError('Invalid user id!', 400);
+    if (!ObjectId.isValid(userId)) throw new HttpError('Invalid user id!', 401);
     const orderDate = new Date();
     let orders;
     try {
