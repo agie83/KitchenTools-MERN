@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import OrderModel from '../orders/order-model';
 import HttpError from '../_utils/HttpError';
-import UserSchema from '../user/user-model';
+import UserModel from '../user/user-model';
 import ProductModel from '../products/product-model';
 
 const { ObjectId } = mongoose.Types;
@@ -27,14 +27,14 @@ class CartService {
   }
 
   static async addToCart({ userId }, { productId, qty }) {
-    if (productId === undefined || productId === '') throw new HttpError('Product ID is required.', 400);
+    if (productId === undefined || productId === '') throw new HttpError('Product ID is required.', 401);
 
-    if (!ObjectId.isValid(userId)) throw new HttpError('User ID is not valid.', 404);
-    if (!ObjectId.isValid(productId)) throw new HttpError('Product ID is not valid.', 404);
+    if (!ObjectId.isValid(userId)) throw new HttpError('User ID is not valid.', 401);
+    if (!ObjectId.isValid(productId)) throw new HttpError('Product ID is not valid.', 401);
 
     let user;
     try {
-      user = await UserSchema.findById(userId);
+      user = await UserModel.findById(userId);
     } catch (err) {
       throw new HttpError('Database error.', 400);
     }
