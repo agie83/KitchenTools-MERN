@@ -17,10 +17,15 @@ class OrderService {
     return orderGroups;
   }
 
-  static async setStatusToPaid(userId) {
+  static async setStatusToOrdered(userId) {
     if (!ObjectId.isValid(userId)) throw new HttpError('Invalid user id!', 400);
     const orderDate = new Date();
-    const orders = await OrderModel.updateMany({ userId, status: 'pending' }, { status: 'paid', orderDate });
+    let orders;
+    try {
+      orders = await OrderModel.updateMany({ userId, status: 'pending' }, { status: 'ordered', orderDate });
+    } catch (err) {
+      throw new HttpError('Database error.', 400);
+    }
     return orders;
   }
 }
