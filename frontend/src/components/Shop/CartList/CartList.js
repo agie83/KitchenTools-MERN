@@ -110,7 +110,6 @@ function CartList() {
         'Content-Type': 'application/json',
       },
     }).then((data) => {
-      console.log(data);
       if ('orders' in data) setOrdered(true);
       if ('message' in data) {
         setOrderError({
