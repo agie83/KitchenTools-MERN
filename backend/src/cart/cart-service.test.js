@@ -14,6 +14,12 @@ ProductModel.findById = mockProductById;
 const mockCreateOrder = jest.fn();
 OrderModel.create = mockCreateOrder;
 
+const mockGetOrders = jest.fn();
+OrderModel.getOrders = mockGetOrders;
+
+const mockUpdateQty = jest.fn();
+OrderModel.updateCartItemQty = mockUpdateQty;
+
 const mockUser = {
   _id: ObjectId(),
   firstName: 'John',
@@ -43,7 +49,32 @@ const mockDbOrder = {
   productId: new ObjectId('628c88a2507560dba6c066cd'),
   orderDate: '2022-05-24T12:48:05.372Z',
 };
-describe('CartService', () => {
+
+describe('CartService getCartItems ', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  test('should call OrderModel.find', async () => {
+    await OrderModel.getOrders('62abab5904c1a81be318e95c');
+    expect(mockGetOrders).toBeCalled();
+  });
+});
+
+describe('CartService updateCartItemQty ', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  test('should call OrderModel.findOneAndUpdate if quantity is bigger than 0', async () => {
+    await OrderModel.updateCartItemQty('62abab5904c1a81be318e95c', 3);
+    expect(mockUpdateQty).toBeCalled();
+  });
+  test('should call OrderModel.findOneAndUpdate if quantity is bigger than 0', async () => {
+    await OrderModel.updateCartItemQty('62abab5904c1a81be318e95c', 0);
+    expect(mockUpdateQty).toBeCalled();
+  });
+});
+
+describe('CartService addToCart', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

@@ -8,7 +8,13 @@ const { ObjectId } = mongoose.Types;
 
 class CartService {
   static async getCartItems(userId) {
-    return OrderModel.find({ userId, status: 'pending' });
+    let orders;
+    try {
+      orders = await OrderModel.find({ userId, status: 'pending' });
+    } catch (err) {
+      throw new HttpError('Database error', 400);
+    }
+    return orders;
   }
 
   static async updateCartItemQty({ orderId, qty }) {
@@ -68,9 +74,16 @@ class CartService {
   }
 
   static async deleteFullCart(userId) {
-    if (!ObjectId.isValid(userId)) throw new HttpError('Invalid order id!', 400);
-    const orders = await OrderModel.deleteMany({ userId, status: 'pending' });
-    return orders.matchedCount;
+    if (!ObjectId.isValid(userId)) throw new HttpError('Invalid order id!', 401);
+
+    let deletedNumber;
+    try {
+      const deleted = await OrderModel.deleteMany({ userId, status: 'pending' });
+      deletedNumber = { message: deleted.matchedCount };
+    } catch (err) {
+      throw new HttpError('Database error.', 400);
+    }
+    return deletedNumber;
   }
 }
 
