@@ -48,6 +48,9 @@ components:
         password:
           type: string
           example: TejpqgCE4y@
+      required:
+        - email
+        - password
   requestBody:
     LoginUserBody:
       description: JSON object which containing login user schema
