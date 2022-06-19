@@ -20,16 +20,20 @@ function CartList() {
   });
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (ordered) {
         setCartItems([]);
         setOrdered(false);
       }
     }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [ordered]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timerErr = setTimeout(() => {
       if (orderError) {
         setOrderError({
           status: false,
@@ -37,6 +41,9 @@ function CartList() {
         });
       }
     }, 3000);
+    return () => {
+      clearTimeout(timerErr);
+    };
   }, [orderError]);
 
   const totalSum = (cartItems.length === 0) ? 0 : cartItems.reduce((prev, curr) => {
@@ -55,7 +62,7 @@ function CartList() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    });
+    }).then((data) => console.log(data));
   };
 
   const handleCounterClick = (item, amount) => {
