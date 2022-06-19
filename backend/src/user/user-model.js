@@ -7,13 +7,13 @@ const UserSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    minLength: [2, 'Keresztnév: minimum 3 betű'],
+    minLength: [2, 'Keresztnév: minimum 2 betű'],
     maxLength: [20, 'Keresztnév: maximum 20 betű'],
   },
   lastName: {
     type: String,
     required: true,
-    minLength: [2, 'Vezetéknév: minimum 3 betű'],
+    minLength: [2, 'Vezetéknév: minimum 2 betű'],
     maxLength: [20, 'Vezetéknév: maximum 30 betű'],
   },
   email: {
