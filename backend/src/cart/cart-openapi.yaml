@@ -113,7 +113,7 @@ components:
               price:
                 type: number
                 example: 2000
-              quantity:
+              qty:
                 type: number
                 example: 24
               status:
