@@ -20,6 +20,16 @@ export default class LoginService {
   }
 
   static async getJwtToken(request) {
+    if (Object.keys(request).length === 0) {
+      throw new HttpError('Minden mező kitöltése kötelező!', 401);
+    }
+    if (!('password' in request)) {
+      throw new HttpError('Jelszó megadása kötelező!', 401);
+    }
+    if (!('email' in request)) {
+      throw new HttpError('Email cím megadása kötelező!', 401);
+    }
+
     const { email, password } = request;
 
     const validation = handleValidation(request, loginValidator);
@@ -44,6 +54,6 @@ export default class LoginService {
     }
 
     if (correctPwd) return this.createJwt(user);
-    throw new HttpError('Nem megfelelő email cím vagy jelszó ', 401);
+    throw new HttpError('Nem megfelelő email cím vagy jelszó', 401);
   }
 }
