@@ -9,6 +9,8 @@ import Informations from '../components/Informations/Informations';
 import Shop from '../components/Shop/Shop';
 import MyOrders from '../components/account/MyOrders';
 import Profile from '../components/account/Profile/Profile';
+import Categories from '../components/Shop/Categories/Categories';
+import Contact from '../components/Contact/Contact';
 
 const menu = [
   {
@@ -20,7 +22,7 @@ const menu = [
     icon: '',
     submenu: [],
     contentComponents: {
-      mainContent: [IncentiveMarketing],
+      mainContent: [IncentiveMarketing, Categories],
       asideContent: [],
     },
     protected: false,
@@ -136,6 +138,22 @@ const menu = [
     contentComponents: {
       mainContent: ['ProductsList'],
       asideContent: ['Categories', 'Footer'],
+    },
+    protected: false,
+    visible: 'always',
+    type: 'primary',
+  },
+  {
+    _id: '62895ab91d916f2cc7b2a771',
+    title: 'Elérhetőségek',
+    routePath: '/contact',
+    routeElement: LayoutPage,
+    navLink: '/contact',
+    icon: '',
+    submenu: [],
+    contentComponents: {
+      mainContent: [Contact],
+      asideContent: [],
     },
     protected: false,
     visible: 'always',
