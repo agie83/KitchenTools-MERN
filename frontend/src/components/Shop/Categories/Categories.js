@@ -6,17 +6,6 @@ import CategoryItem from '../CategoryItem/CategoryItem';
 function Categories({ aside = true }) {
   const [categories, setCategories] = useState([]);
 
-  // async function getCategories() {
-  //   let response;
-  //   try {
-  //     response = await fetch(CATEGORIES_URL);
-  //     setFetchWorking(true);
-  //   } catch (error) {
-  //     setFetchWorking(false);
-  //   }
-  //   return response.json();
-  // }
-
   useEffect(() => {
     getItems(CATEGORIES_URL).then((data) => {
       setCategories(data.categories);
