@@ -19,10 +19,10 @@ router.use(register);
 router.use(login);
 router.use(shop);
 router.use(categories);
+router.use(stores);
 router.use(authorizationMiddleware);
 router.use(cart);
 router.use(orders);
 router.use(user);
-router.use(stores);
 
 export default router;
