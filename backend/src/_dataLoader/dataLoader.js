@@ -26,7 +26,7 @@ async function loadData() {
   await connectToDb();
   await StoreModel.insertMany(stores);
   await CategoryModel.insertMany(categories);
-  // await ProductModel.insertMany(products);
+  await ProductModel.insertMany(products);
   logger.info('collections initialized');
   process.exit(0);
 }

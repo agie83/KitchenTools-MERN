@@ -1,116 +1,60 @@
 const products = [{
-  _id: {
-    $oid: '628a63d71c406644488d2233',
-  },
+  _id: '628a63d71c406644488d2233',
   name: 'Teflonos serpenyő',
-  images: [
-    'pan1.jpg',
-  ],
-  category: {
-    $oid: '6257326ca4457444b2e75620',
-  },
+  images: ['serpenyo_j8wf2g.jpg'],
+  category: '6257326ca4457444b2e75620',
   description: 'teflonos serpenyő...',
-  labels: [
-    'rozsdamentes acél',
-  ],
-  price: {
-    $numberDecimal: '4000',
-  },
+  labels: ['teflon', 'serpenyő'],
+  price: 4000,
   slug: 'teflonos-serpenyo',
-  qty: {
-    $numberDecimal: '10',
-  },
+  qty: 10,
 }, {
-  _id: {
-    $oid: '628a63d71c404443c88d2244',
-  },
+  _id: '628a63d71c404443c88d2244',
   name: 'Rozsdamentes fazék 11cm',
-  images: [
-    'pot1.jpg',
-  ],
-  category: {
-    $oid: '6257326ca4457e2db2e75620',
-  },
+  images: ['fazek-fedovel_owop4y.jpg'],
+  category: '6257326ca4457e2db2e75620',
   description: 'lorem ipsum...',
-  labels: [
-    'rozsdamentes acél',
-  ],
-  price: {
-    $numberDecimal: '6000',
-  },
+  labels: ['rozsdamentes acél'],
+  price: 6000,
   slug: 'rozsdamentes-fazek-11cm',
-  qty: {
-    $numberDecimal: '8',
-  },
+  qty: 8,
 }, {
-  _id: {
-    $oid: '628a63d71c404443c88d2255',
-  },
+  _id: '628a63d71c404443c88d2255',
   name: 'Rozsdamentes fazék 19cm',
-  images: [
-    'pot1.jpg',
-  ],
-  category: {
-    $oid: '6257326ca4457e2db2e75620',
-  },
+  images: ['fazek-fedovel_owop4y.jpg'],
+  category: '6257326ca4457e2db2e75620',
   description: 'fazék...',
-  labels: [
-    'rozsdamentes acél',
-  ],
-  price: {
-    $numberDecimal: '6000',
-  },
+  labels: ['rozsdamentes acél'],
+  price: 6500,
   slug: 'rozsdamentes-fazek-19cm',
-  qty: {
-    $numberDecimal: '12',
-  },
-},
-
-{
-  _id: {
-    $oid: '628a63d71c444403c88d2885',
-  },
+  qty: 12,
+}, {
+  _id: '628a63d71c444403c88d2885',
   name: 'Evőeszköz készlet',
-  images: [
-    'evoeszkozok_zbfuje.jpg',
-  ],
-  category: {
-    $oid: '6257326ca4457e2db2e75621',
-  },
+  images: ['evoeszkozok_zbfuje.jpg'],
+  category: '6257326ca4457e2db2e75621',
   description: 'fazék...',
   labels: [
     'evőeszköz, kanál, kés, villa',
   ],
-  price: {
-    $numberDecimal: '6000',
-  },
+  price: 3500,
   slug: 'evoeszkoz-keszlet',
-  qty: {
-    $numberDecimal: '12',
-  },
+  qty: 12,
 },
 {
-  _id: {
-    $oid: '628a63d71c444403c88d2257',
-  },
+  _id: '628a63d71c444403c88d2257',
   name: 'Tányér készlet',
   images: [
     'tanyerok_ymshh7.jpg',
   ],
-  category: {
-    $oid: '6257326ca4457e2db2e75620',
-  },
+  category: '6257326ca4457e2db2e75620',
   description: 'teljes étkészlet',
   labels: [
     'porcelán',
   ],
-  price: {
-    $numberDecimal: '6000',
-  },
+  price: 7300,
   slug: 'tanyer-keszlet',
-  qty: {
-    $numberDecimal: '12',
-  },
+  qty: 6,
 }];
 
 export default products;
