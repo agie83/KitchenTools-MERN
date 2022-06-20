@@ -1,0 +1,6 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+.form-control:focus {
+  border-color: $yellow-400;
+  box-shadow: none;
+}

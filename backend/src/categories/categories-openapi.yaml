@@ -1,0 +1,46 @@
+paths:
+  /api/categories:
+    get:
+      summary: 'Get all categories from database'
+      tags:
+        - api
+      responses:
+        200:
+          description: 'Object which contains array of categories'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/categorySchema'
+        500:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Unknown error happened'
+
+components:
+  schemas:
+    categorySchema:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 627a7fe49ccdcf2f608bf944
+              name:
+                type: string
+                example: Kategórianév
+              slug:
+                type: string
+                example: 'kategorianev'
+              mapImage:
+                type: string
+                example: 'kategorianev.jpg'

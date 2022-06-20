@@ -1,0 +1,126 @@
+paths:
+  /api/users:
+    get:
+      summary: 'Get user data by id inside JWT'
+      security:
+        - bearerAuth: []
+      tags:
+        - api
+      responses:
+        200:
+          description: 'Object of user data that is saved in the database at the time of the response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedUserData'
+        401:
+          description: 'Unauthorized error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Missing token.'
+    patch:
+      summary: 'Get user data by id inside JWT'
+      security:
+        - bearerAuth: []
+      tags:
+        - api
+      requestBody:
+        $ref: '#/components/requestBody/updateBody'
+      responses:
+        200:
+          description: 'Object of user data that is saved in the database at the time of the response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/savedUserData'
+        400:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'firstName is required.'
+        401:
+          description: 'Unauthorized error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Missing token.'
+        500:
+          description: 'Server error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'user validation failed: firstName: firstName is required.'
+
+components:
+  schemas:
+    updateUserData:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+          format: password
+          min: 8
+          max: 60
+        newPassword:
+          type: string
+          format: password
+          min: 8
+          max: 60
+      required:
+        - firstName
+        - lastName
+        - password
+        - newPassword
+
+    savedUserData:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6257326ca4457e2db2e75614
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        email:
+          type: string
+          example: jhon.doe@gmail.com
+
+  requestBody:
+    updateBody:
+      description: JSON object containing updateUserData schema
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateUserData'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JSON object including user id under 'id' key as JWT

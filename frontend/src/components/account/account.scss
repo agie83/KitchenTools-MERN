@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.login h1, .register h1{
+  font-size: calc(1.2rem + 1.3vw);
+  margin-bottom: 1.5rem;
+}
+.site-link{
+  text-decoration: none;
+  color: #111;
+}
+.site-link:hover{
+  color: $warning;
+}

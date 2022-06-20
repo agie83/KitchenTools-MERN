@@ -1,0 +1,40 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.cart-icon{
+  cursor: pointer;
+}
+.qty-setter{
+ color: #ccc;
+}
+.qty-setter:hover{
+  color: $warning;
+}
+table.order-list th{
+  font-weight: normal;
+  color: #888;
+}
+table.order-list td{
+  vertical-align: middle;
+}
+table.order-list .img-td{
+  width: 70px;
+}
+table.order-list .img-td img{
+  width: 50px;
+}
+table.order-list .unit-price{
+  color: #888;
+}
+.table.order-list > :not(:first-child){
+  border-top: none;
+}
+
+.cart-button{
+  line-height: 16px;
+}
+.cart-btn-text{
+  position:relative;
+  top:2px;
+  font-size:18px;
+}

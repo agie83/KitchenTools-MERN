@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,body{
+  background: url('./assets/kitchen.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+body{
+  overflow-y: scroll;
+}
+#root{
+padding-top:70px;
+display:flex; flex-direction:column; min-height:100vh;
+color: #333;
+}
+div{
+  background: transparent;
+}

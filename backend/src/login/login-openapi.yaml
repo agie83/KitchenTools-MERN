@@ -1,0 +1,61 @@
+paths:
+  /api/login:
+    post:
+      summary: 'Login a user'
+      tags:
+        - api
+      requestBody:
+        $ref: '#/components/requestBody/LoginUserBody'
+      responses:
+        200:
+          description: 'response JWT token'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        401:
+          description: 'response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'All fields are required.'
+        500:
+          description: 'response server error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Server error.'
+components:
+  schemas:
+    loginUser:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@example.com
+        password:
+          type: string
+          example: TejpqgCE4y@
+      required:
+        - email
+        - password
+  requestBody:
+    LoginUserBody:
+      description: JSON object which containing login user schema
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/loginUser'

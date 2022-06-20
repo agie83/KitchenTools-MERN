@@ -1,0 +1,73 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+.shopNavbar{
+  color: $warning;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.shopNavbar a{
+  color: $warning;
+  text-decoration: none;
+}
+.shopNavbar ul{
+  display: flex;
+  width:100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 0 5px;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+.shopNavbar ul li{
+  padding: 10px 5px;
+}
+
+.shopNavbar ul.shop-other-info .item-icon{
+  display: block;
+}
+.shopNavbar ul.shop-other-info .item-title{
+  display: none;
+}
+.shopNavbar ul.shop-other-info svg{
+  position:relative;
+  top: -10px;
+  font-size: 40px;
+  color: $warning;
+ }
+ .shop-other-info .cart{
+  position:relative;
+  margin-right: 10px;
+ }
+ .qty-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  border: 3px solid $yellow-800;
+  background-color: $warning;
+  color: #111;
+  line-height:26px;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 100;
+  position: absolute;
+  top:-3px;
+  right:-7px;
+ }
+@media screen and (min-width: 576px) {
+
+  .shopNavbar ul.shop-other-info .item-icon{
+    display: none;
+  }
+  .shopNavbar ul.shop-other-info .item-title{
+    display: block;
+  }
+  .shopNavbar a:hover{
+    color: #f8f8f8;
+  }
+}

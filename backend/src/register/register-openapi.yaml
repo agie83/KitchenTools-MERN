@@ -1,0 +1,73 @@
+paths:
+  /api/register:
+    post:
+      summary: 'Register a user'
+      tags:
+        - api
+      requestBody:
+        $ref: '#/components/requestBody/UserBody'
+      responses:
+        200:
+          description: 'response user object'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resUser'
+        400:
+          description: 'response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Email is required.'
+components:
+  schemas:
+    registrationUser:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          max: 254
+        password:
+          type: string
+          format: password
+          min: 8
+          max: 60
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+    resUser:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Doe
+            email:
+              type: string
+              example: jhon.doe@gmail.com
+            id:
+              type: string
+              example: 6257326ca4457e2db2e75614
+  requestBody:
+    UserBody:
+      description: JSON object which containing registration user schema
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/registrationUser'

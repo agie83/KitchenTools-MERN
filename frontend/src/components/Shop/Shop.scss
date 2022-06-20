@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.shop-header a{
+  text-decoration: none;
+  color: $secondary;
+}
+.shop-header a:hover{
+ color: $dark;
+}
+.shop-header-arrow{
+  font-size: 12px;
+  padding: 0 5px;
+  color: #888;
+}
+.shop-header-category{
+  color: $yellow-400
+}
