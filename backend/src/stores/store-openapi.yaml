@@ -1,5 +1,5 @@
 paths:
-  /api/cart:
+  /api/stores:
     get:
       summary: 'Get stores from database'
       tags:
@@ -44,3 +44,7 @@ components:
               opening:
                 type: string
                 example: 'H-P: 8.00-18.00'
+              mapLink:
+                type: string
+              mapImage:
+                type: string

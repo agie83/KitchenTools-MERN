@@ -16,6 +16,12 @@ const StoreSchema = new Schema({
   opening: {
     type: String,
   },
+  mapLink: {
+    type: String,
+  },
+  mapImage: {
+    type: String,
+  },
 });
 
 export default mongoose.model('Store', StoreSchema);
