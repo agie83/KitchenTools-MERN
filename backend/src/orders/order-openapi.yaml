@@ -1,0 +1,87 @@
+paths:
+  /api/orders:
+    get:
+      summary: 'Get orders with all status except "pending"'
+      tags:
+        - api
+      responses:
+        200:
+          description: 'Object which contains array of pending orders'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderSchema'
+        500:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Unknown error happened'
+    patch:
+      summary: 'Update status to "ordered"'
+      security:
+        - bearerAuth: []
+      tags:
+        - api
+      responses:
+        200:
+          description: 'set "pending" status to "ordered"'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderSchema'
+
+        401:
+          description: 'Unauthorized error object'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorizedSchema'
+
+components:
+  schemas:
+    unauthorizedSchema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Missing token.'
+    orderSchema:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 627a7fe49ccdcf2f608bf944
+              name:
+                type: string
+                example: Product1
+              price:
+                type: number
+                example: 2000
+              qty:
+                type: number
+                example: 24
+              status:
+                type: string
+                example: ordered
+              image:
+                type: string
+                example: 'serpenyo.jpg'
+              orderDate:
+                type: date-time
+                example: 2022-05-05T12:48:32.584+00:00
+              userId:
+                type: string
+                example: 627a7fe49ccdcf2f608bf944
+              productId:
+                type: string
+                example: 627a7fe49ccdcf2f608bf944
