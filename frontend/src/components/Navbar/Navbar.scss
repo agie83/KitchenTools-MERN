@@ -1,12 +1,15 @@
 @import '~bootstrap/scss/bootstrap.scss';
+
 .navbar{
   padding: 0;
 }
-
 .nav-link, .nav-link:hover, .nav-link.active{
   text-decoration: none;
-  color: $warning;
+  color: $yellow-600;
   font-size: 18px;
+}
+.nav-link:hover{
+  color: $warning;
 }
 .nav-link:hover .menu-icon, .nav-link.active .menu-icon{
 color: $light;
@@ -15,11 +18,11 @@ color: $light;
  padding-right: 10px; 
   padding-left: 10px;
 }
+.nav-link.brand{
+padding-left:0;
+}
 nav .dropdown-menu {
-  // background-color: rgba(0,0,0,.5);
-  background-color: #fff;
-  border: 5px solid $yellow-400;
-  opacity: .9;
+  background-color: rgba(0,0,0,0.8);
   right:0;
   padding: 0;
 }
@@ -31,14 +34,14 @@ nav .dropdown-menu li{
   padding: 0 10px;
 }
 nav .dropdown-menu li:not(:last-child){
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000;
 }
 
 nav .dropdown-menu .nav-link{
-  color: #333;
+  color: $yellow-600;
 }
-nav .dropdown-menu li:hover{
-  background-color: $yellow-400;
+nav .dropdown-menu .nav-link:hover{
+  color: $warning;
 }
 nav .search #navbarSearchIcon{
   display: inline-block;
@@ -56,6 +59,7 @@ nav .search .dropdown-toggle::after{
 }
 .navbar-toggler, .navbar-toggler:hover{
   border: none;
+  padding-right: 0;
 }
 .navbar-toggler:focus {
 box-shadow: none;
@@ -67,9 +71,17 @@ box-shadow: none;
   margin: 5px 0;
   border: none;
 }
+.navbar-nav{
+  background: rgba(0,0,0,0.9);
+}
 @media (min-width: 576px) {
 .navbar-expand-sm .navbar-nav .dropdown-menu {
-    /* position: static; */
     left: -80px;
+}
+.navbar-nav{
+  background: transparent;
+}
+.nav-link, .nav-link:hover, .nav-link.active{
+  color: $warning;
 }
 }
