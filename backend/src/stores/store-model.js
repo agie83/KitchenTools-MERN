@@ -13,6 +13,14 @@ const StoreSchema = new Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
   opening: {
     type: String,
   },

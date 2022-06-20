@@ -50,3 +50,9 @@ components:
               mapImage:
                 type: string
                 example: 'map-uzlet-1.jpg'
+              phone:
+                type: string
+                example: +3670/123-4567,
+              email:
+                type: string
+                example: kitchen@tools.hu
