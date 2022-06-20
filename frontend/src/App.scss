@@ -8,7 +8,9 @@
 html,body{
   background: url('./assets/kitchen.jpg') no-repeat center center fixed;
   background-size: cover;
- 
+}
+body{
+  overflow-y: scroll;
 }
 #root{
 padding-top:70px;
