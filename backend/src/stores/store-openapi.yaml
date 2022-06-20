@@ -37,7 +37,7 @@ components:
                 example: 627a7fe49ccdcf2f608bf944
               name:
                 type: string
-                example: Product1
+                example: 'Üzlet I.'
               address:
                 type: string
                 example: '1111 Budapest, Teszt u. 11.'
@@ -46,5 +46,7 @@ components:
                 example: 'H-P: 8.00-18.00'
               mapLink:
                 type: string
+                example: 'https://goo.gl/maps/bPtAHuXzzDKdx8Kk7'
               mapImage:
                 type: string
+                example: 'map-uzlet-1.jpg'
