@@ -23,13 +23,18 @@ function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (success) {
         setAlertMessage('');
         navigate('/login');
       }
     }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [success]);
+
   function handleValidation() {
     const result = registerSchema.validate(formData, { abortEarly: false });
     const { error } = result;
