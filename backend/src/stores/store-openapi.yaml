@@ -1,0 +1,46 @@
+paths:
+  /api/cart:
+    get:
+      summary: 'Get stores from database'
+      tags:
+        - api
+      responses:
+        200:
+          description: 'Object which contains array of stores'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/storeSchema'
+        500:
+          description: 'Response error object'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Unknown error happened'
+
+components:
+  schemas:
+    storeSchema:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 627a7fe49ccdcf2f608bf944
+              name:
+                type: string
+                example: Product1
+              address:
+                type: string
+                example: '1111 Budapest, Teszt u. 11.'
+              opening:
+                type: string
+                example: 'H-P: 8.00-18.00'
