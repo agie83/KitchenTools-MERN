@@ -13,12 +13,12 @@ function Contact() {
   }, []);
 
   return (
-    <div className="bg-light p-3">
+    <div className="bg-light p-5">
       <h1 className="h4">Elérhetőségeink</h1>
       <div className="py-3 row">
         {
    (stores?.length > 0) && stores.map((store) => (
-     <div key={store._id} className="col-12 col-sm-6 p-3">
+     <div key={store._id} className="col-12 col-sm-6 p-4">
        <div className="text-warning fs-5">{store.name}</div>
        <div>{store.address}</div>
        <div>{store.opening}</div>

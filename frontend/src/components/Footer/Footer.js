@@ -4,8 +4,10 @@ import './Footer.scss';
 function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer bg-dark text-secondary text-end p-2">
+    <footer className="footer bg-dark text-secondary text-end py-2 px-4">
       {year}
+      {' | '}
+      Green Fox Academy | Agócs Ágnes
     </footer>
   );
 }
