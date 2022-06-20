@@ -128,64 +128,61 @@ function CartList() {
   };
   return (
     <div>
-
       {
-  (cartItems.length > 0)
-  && (
-  <>
+      (cartItems.length > 0)
+      && (
+        <div className="table-responsive">
 
-    <table className="table order-list">
-      <thead>
-        <tr>
-          <th className="text-start" colSpan="2">Termék</th>
-          <th className="text-center">Mennyiség</th>
-          <th className="text-center">Egységár (Ft)</th>
-          <th className="text-end">Összeg (Ft)</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-        cartItems.map((item) => (
-          <tr key={item._id}>
-            <td className="img-td"><img src={`${CLOUDINARY_CART_THUMBNAIL_URL}/${item?.image}`} alt={item?.name} /></td>
-            <td className="text-start">{item?.name}</td>
-            <td className="text-center">
-              <IoMdArrowDropdown onClick={() => handleCounterClick(item, -1)} className="cart-icon qty-setter fs-5 me-2" />
-              {item?.qty}
-              <IoMdArrowDropup onClick={() => handleCounterClick(item, 1)} className="cart-icon qty-setter fs-5 ms-2" />
-            </td>
-            <td className="unit-price text-center">{item?.price}</td>
-            <td className="text-end">{item?.price * item?.qty}</td>
-            <td><BsX onClick={() => handleDeleteOne(item)} className="cart-icon fs-5" /></td>
-          </tr>
-        ))
+          <table className="table order-list">
+            <thead>
+              <tr>
+                <th className="text-start" colSpan="2">Termék</th>
+                <th className="text-center">Mennyiség</th>
+                <th className="text-center">Egységár (Ft)</th>
+                <th className="text-end">Összeg (Ft)</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+            cartItems.map((item) => (
+              <tr key={item._id}>
+                <td className="img-td"><img src={`${CLOUDINARY_CART_THUMBNAIL_URL}/${item?.image}`} alt={item?.name} /></td>
+                <td className="text-start">{item?.name}</td>
+                <td className="text-center">
+                  <IoMdArrowDropdown onClick={() => handleCounterClick(item, -1)} className="cart-icon qty-setter fs-5 me-2" />
+                  {item?.qty}
+                  <IoMdArrowDropup onClick={() => handleCounterClick(item, 1)} className="cart-icon qty-setter fs-5 ms-2" />
+                </td>
+                <td className="unit-price text-center">{item?.price}</td>
+                <td className="text-end">{item?.price * item?.qty}</td>
+                <td><BsX onClick={() => handleDeleteOne(item)} className="cart-icon fs-5" /></td>
+              </tr>
+            ))
+          }
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan="5" className="fw-bold text-end fs-5">{totalSum}</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tfoot>
+          </table>
+          { (ordered) && <OrderConfirmation />}
+          { (orderError.status) && <Alert type="danger" message={orderError.message} />}
+          <div className="my-4 text-center">
+            <button type="button" className="cart-button btn btn-outline-dark mx-1 my-2" onClick={handleDeleteAll}>
+              <BsTrash className="fs-5" />
+              <span className="cart-btn-text"> Kosár törlése</span>
+            </button>
+            <button type="button" className="cart-button btn btn-warning mx-1 my-2" onClick={sendOrder}>
+              <FiShoppingBag className="fs-5" />
+              <span className="cart-btn-text"> Megrendelés</span>
+            </button>
+          </div>
+        </div>
+      )
       }
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colSpan="5" className="fw-bold text-end fs-5">{totalSum}</td>
-          <td>&nbsp;</td>
-        </tr>
-      </tfoot>
-    </table>
-    { (ordered) && <OrderConfirmation />}
-    { (orderError.status) && <Alert type="danger" message={orderError.message} />}
-    <div className="my-4 text-center">
-      <button type="button" className="cart-button btn btn-outline-dark mx-1 my-2" onClick={handleDeleteAll}>
-        <BsTrash className="fs-5" />
-        <span className="cart-btn-text"> Kosár törlése</span>
-      </button>
-      <button type="button" className="cart-button btn btn-warning mx-1 my-2" onClick={sendOrder}>
-        <FiShoppingBag className="fs-5" />
-        <span className="cart-btn-text"> Megrendelés</span>
-      </button>
-    </div>
-
-  </>
-  )
-}
-
     </div>
   );
 }

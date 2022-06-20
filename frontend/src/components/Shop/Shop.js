@@ -16,7 +16,6 @@ function Shop() {
     case 1:
       slug = '';
       resultKey = 'categories';
-      // resultKey = (window.location.search !== '') ? 'products' : 'categories';
       break;
     case 2:
       slug = pathArray[pathArray.length - 1];

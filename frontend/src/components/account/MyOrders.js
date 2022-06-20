@@ -21,7 +21,6 @@ function MyOrders() {
         const modifiedList = {};
         if (resOrders[key].length > 0) {
           const date = new Date(key);
-          //  modifiedList[`${date.toISOString().slice(0, 10)} ${date.toISOString().slice(11, 16)}`] = resOrders[key];
           modifiedList.products = (modifiedList.products) || resOrders[key];
           modifiedList.date = `${date.toISOString().slice(0, 10)} ${date.toISOString().slice(11, 16)}`;
           modifiedList.totalSum = (modifiedList.totalSum || 0)

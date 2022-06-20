@@ -7,6 +7,7 @@ import orderStatus from '../../constants/values';
 function OrderList({ orders }) {
   return (
     <div>
+      <h1 className="h3 mb-3">Rendeléseim</h1>
       { orders.map((order) => (
         <div key={uuid()} className="mb-2">
           <div className="order-wrapper d-flex justify-content-between py-3 fs-5">
@@ -20,18 +21,18 @@ function OrderList({ orders }) {
           <div className="d-flex flex-column">
             {
               order?.products.map((product, index) => (
-                <div key={uuid()} className="d-flex flex-row">
+                <div key={uuid()} className="d-flex flex-column flex-sm-row">
                   <div className="pe-3"><img className="order-list-img" src={`${CLOUDINARY_PRODUCT_URL}/${product.image}`} alt={product.name} /></div>
-                  <div className="col-4">{product.name}</div>
-                  <div className="col-2">
+                  <div className="col-12 col-sm-4">{product.name}</div>
+                  <div className="col-12 col-sm-2">
                     {product.qty}
                     db
                   </div>
-                  <div className="col-2">
+                  <div className="col-12 col-sm-2">
                     {product.price}
                     Ft/db
                   </div>
-                  <div className="col-2">
+                  <div className="col-12 col-sm-2">
                     {product.qty * product.price}
                     Ft
                   </div>
@@ -39,9 +40,9 @@ function OrderList({ orders }) {
                     {
                       (index === 0)
                       && (
-                      <p className="text-end">
+                      <span className="d-none d-md-block">
                         {orderStatus[product.status]}
-                      </p>
+                      </span>
                       )
                     }
                   </div>
