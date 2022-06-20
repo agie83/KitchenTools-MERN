@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import User from '../user/user-model';
-import logger from '../logger';
 import HttpError from '../_utils/HttpError';
 import { registerValidator, handleValidation } from '../_utils/validatorTools';
 
@@ -34,14 +33,13 @@ export default class RegisterService {
         (key) => errors[key].kind === 'required',
       );
       if (requiredFieldNames.length === 1) {
-        logger.error(errors[requiredFieldNames[0]]);
         const fieldName = requiredFieldNames[0];
         throw httpError.setMessage(`${fieldNameHU[fieldName]} megadása kötelező!`);
       }
       if (requiredFieldNames.length > 1) {
         const requiredFieldNamesHU = requiredFieldNames.map((field) => fieldNameHU[field]);
         const [lastFieldName, ...otherFieldNames] = requiredFieldNamesHU;
-        logger.error(errors);
+
         throw httpError.setMessage(`${otherFieldNames.join(', ')} és ${lastFieldName} megadása kötelező!`);
       }
       const wrongField = Object.values(errors)[0];

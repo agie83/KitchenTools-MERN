@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import logger from '../logger';
 import UserSchema from './user-model';
 import HttpError from '../_utils/HttpError';
 
@@ -53,7 +52,6 @@ class UserService {
         (key) => errors[key].kind === 'required',
       );
       if (requiredFieldNames.length === 1) {
-        logger.error(errors[requiredFieldNames[0]]);
         const fieldName = requiredFieldNames[0];
         throw httpError.setMessage(`${fieldNameHU[fieldName]} megadása kötelező.`);
       }
