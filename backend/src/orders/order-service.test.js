@@ -1,5 +1,4 @@
 import OrderService from './order-service';
-
 import OrderModel from './order-model';
 import HttpError from '../_utils/HttpError';
 
