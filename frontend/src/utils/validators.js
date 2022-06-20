@@ -59,11 +59,9 @@ export const registerSchema = Joi.object({
         }),
   passwordAgain:
       Joi.string()
-        .min(8)
         .required()
         .valid(Joi.ref('password'))
         .messages({
-          'string.min': 'Jelszó: Minumum 8 karakter megadása kötelező',
           'string.empty': 'Jelszó újbóli megadása kötelező',
           'any.required': 'Jelszó újbóli megadása kötelező',
           'any.only': 'A két jelszó eltér',
