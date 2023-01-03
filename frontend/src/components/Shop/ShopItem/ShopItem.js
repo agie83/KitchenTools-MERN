@@ -21,7 +21,6 @@ function ShopItem({
                   <CategoryItem
                     key={item?._id}
                     cardTitle={item.name}
-                    cardText="asdfasdf"
                     cardImage={item.image}
                     aside
                     categoryPath={`${path}/${item.slug}`}

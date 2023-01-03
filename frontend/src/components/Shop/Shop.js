@@ -53,19 +53,17 @@ function Shop() {
   return (
     <div className="shop bg-light p-3 row">
       {
-                 (resultKey === 'products' || resultKey === 'product') && (
-                   <div className="shop-header">
-                     <h5 className="mb-5 d-flex align-items-center">
-
-                       <Link to={`/${pathArray[0]}`}>Shop</Link>
-                       <span className="shop-header-arrow"><BsChevronDoubleRight /></span>
-                       <span className="shop-header-category">
-                         {categoryTitle}
-                       </span>
-                     </h5>
-                   </div>
-
-                 )
+        (resultKey === 'products' || resultKey === 'product' || resultKey === 'categories') && (
+          <div className="shop-header">
+            <h5 className="mb-5 d-flex align-items-center">
+              <Link to={`/${pathArray[0]}`}>Shop</Link>
+              {(resultKey === 'products') && (<span className="shop-header-arrow"><BsChevronDoubleRight /></span>)}
+              <span className="shop-header-category">
+                {categoryTitle}
+              </span>
+            </h5>
+          </div>
+        )
       }
       {(itemList.length > 0 || Object.keys(itemList).length > 0)
         ? (
