@@ -1,10 +1,10 @@
 ## KitchenTools Webshop
 
-A webshop különböző konyhai eszközöket kínál vásárlóinak.
+A webshop különböző konyhai eszközöket kínál vásárlóinak. 
 
 ### 1. Áttekintés, funkciók
 
-A termékek kategóriák szerint vannak csoportosítva, bárki megtekintheti, de egyelőre csak regisztrált felhasználók tudnak rendelni. A belépett felhasználók a rendelésen kívül tudják módosítani adataikat és megnézhetik korábbi rendeléseiket.
+A termékek kategóriák szerint vannak csoportosítva, bárki megtekintheti, de egyelőre csak regisztrált felhasználók tudnak rendelni. A belépett felhasználók a rendelésen kívül tudják módosítani adataikat és megnézhetik korábbi rendeléseiket. Ez a websop egy alap, sokféle továbbfejlesztési lehetőséggel.
 
 **Főoldal**
 
